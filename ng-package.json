@@ -7,6 +7,7 @@
   "allowedNonPeerDependencies": [
     "@angular/core",
     "@angular/common",
-    "html2canvas"
+    "html2canvas",
+    "ng-packagr"
   ]
 }
