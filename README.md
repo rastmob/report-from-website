@@ -3,28 +3,28 @@
 
 [![npm version](https://badge.fury.io/js/report-from-website.svg)](https://badge.fury.io/js/report-from-website)
 
-**Report From Website** Angular uygulamaları için kullanıcıların yaşadıkları hataları ve ekran görüntülerini belirli bir sunucuya göndermelerine olanak tanır. Bu kütüphane, kullanıcılardan alınan geri bildirimleri ve hataları görsel olarak yakalayarak geliştirici ekiplere daha detaylı bilgi sunar. Basit bir `report button` bileşeni sunar ve bu bileşen sayesinde kullanıcılar sorun yaşadıkları anı kolayca raporlayabilir.
+**Report From Website** is an Angular library component that allows users to report issues they encounter, along with screenshots and logs, to a specified server endpoint. This library is particularly useful for gathering user feedback and debugging information in a visual format, helping development teams better understand and resolve issues.
 
-## Özellikler
+## Features
 
-- **Ekran Görüntüsü Alma**: Kullanıcıların mevcut ekranlarının görselini otomatik olarak yakalar.
-- **Log Toplama**: Konsol logları, URL ve kullanıcı bilgilerini toplar.
-- **Sunucuya Gönderim**: Belirli bir URL'ye tüm verileri JSON formatında gönderir.
-- **Esneklik**: Kendi sunucunuz için log URL'si ve header bilgilerini dinamik olarak geçebilirsiniz.
+- **Screenshot Capture**: Automatically captures the current screen view.
+- **Log Collection**: Gathers console logs, URL, and user information.
+- **Server Submission**: Sends all data to a specified URL in JSON format.
+- **Flexible Configuration**: Allows dynamic input of custom log URLs and HTTP headers.
 
-## Kurulum
+## Installation
 
 ```bash
 npm install report-from-website
 ```
 
-## Kullanım
+## Usage
 
-Kütüphaneyi Angular uygulamanıza entegre etmek için aşağıdaki adımları izleyin.
+Integrate the library into your Angular application by following these steps.
 
-### Modülü İçe Aktarın
+### Import the Module
 
-`AppModule` veya bu bileşeni kullanacağınız herhangi bir modülde `ReportFromWebsiteModule`’u içe aktarın.
+Import `ReportFromWebsiteModule` in `AppModule` or the specific module where you want to use this component.
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -46,9 +46,9 @@ import { ReportFromWebsiteModule } from 'report-from-website';
 export class AppModule { }
 ```
 
-### Bileşeni Kullanın
+### Use the Component
 
-`ReportButtonComponent` bileşenini uygulamanızda kullanarak kullanıcıların ekran görüntülerini ve log verilerini sunucunuza göndermelerini sağlayabilirsiniz.
+Add the `ReportButtonComponent` to your template to enable users to report their current screen state, including screenshots and log details.
 
 #### `app.component.html`
 
@@ -65,7 +65,7 @@ export class AppModule { }
 
 #### `app.component.ts`
 
-Rapor gönderiminin sonucunu almak için `handleReportResult` metodunu aşağıdaki gibi tanımlayabilirsiniz:
+Define the `handleReportResult` function to process the result of the report submission:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -79,48 +79,48 @@ export class AppComponent {
   handleReportResult(result: { status: string, response?: any, error?: any }) {
     if (result.status === 'success') {
       console.log('Report sent successfully:', result.response);
-      // Başarılı bildirim gösterebilir veya kullanıcıya mesaj verebilirsiniz
+      // Display success notification or message
     } else if (result.status === 'error') {
       console.error('Report sending failed:', result.error);
-      // Hata durumunda kullanıcıya uygun mesaj gösterilebilir
+      // Display error notification or message
     }
   }
 }
 ```
 
-### Özelleştirilebilir Giriş Parametreleri
+### Configurable Input Parameters
 
-- **`logUrl`** (zorunlu): Sunucunuzdaki log toplama URL'sini belirtir. Örneğin: `https://yourserver.com/api/report/log`
-- **`headers`** (isteğe bağlı): HTTP isteğinde kullanılacak header bilgilerini içerir. Genellikle `Authorization` ve `Content-Type` bilgilerini içerir.
+- **`logUrl`** (required): Specifies the URL endpoint for log collection. Example: `https://yourserver.com/api/report/log`
+- **`headers`** (optional): HTTP headers to include in the request, commonly for `Authorization` and `Content-Type`.
 
-### Geri Dönüş Verileri
+### Event Response Data
 
-- **`status`**: İşlem başarılıysa `success`, hata alındıysa `error` döner.
-- **`response`**: İşlem başarılıysa sunucudan dönen yanıtı içerir.
-- **`error`**: İşlem başarısız olduysa hata detaylarını içerir.
+- **`status`**: Returns `success` if the report was sent successfully, otherwise returns `error`.
+- **`response`**: Contains the server response data upon success.
+- **`error`**: Provides error details if the submission fails.
 
-## Örnek Kullanım Senaryosu
+## Use Case Example
 
-Bu kütüphane, özellikle kullanıcıların yaşadıkları sorunları hızlı bir şekilde bildirip geliştirici ekiplerin hataları daha çabuk çözmesine yardımcı olur. Kullanıcılar sadece bir butona tıklayarak yaşadıkları sorunu ekran görüntüsü ve log detaylarıyla beraber sunucuya gönderebilirler. Bu, kullanıcı memnuniyetini artırır ve hataların belirlenmesini kolaylaştırır.
+This library is especially helpful for enabling users to quickly report issues they encounter, with screenshots and logs, directly to the server. It improves user satisfaction and simplifies issue resolution by providing developers with contextual data.
 
-## Bağımlılıklar
+## Dependencies
 
-Kütüphane, ekran görüntüsü almak için `html2canvas` kütüphanesini kullanmaktadır. Bu bağımlılık `package.json` içinde tanımlıdır ve otomatik olarak yüklenir.
+This library uses the `html2canvas` library to capture screenshots, which is included as a dependency in the `package.json`.
 
-## Katkıda Bulunma
+## Contributing
 
-Bu projeye katkıda bulunmak için lütfen [GitHub repo](https://github.com/rastmob/report-from-website) adresine göz atın ve PR gönderin.
+To contribute to this project, please visit the [GitHub repository](https://github.com/rastmob/report-from-website) and submit a pull request.
 
-## İletişim ve Destek
+## Contact & Support
 
-- **Geliştirici**: [@mobilerast](http://rastmobile.com/en)
-- **İletişim**: mehmet.alp@rastmobile.com
-- **Telefon**: +905310211446
+- **Developer**: [@mobilerast](http://rastmobile.com/en)
+- **Contact**: mehmet.alp@rastmobile.com
+- **Phone**: +905310211446
 
-## Lisans
+## License
 
 MIT
 
 ---
 
-Bu kütüphanenin entegrasyonunu yaptıktan sonra kullanıcılarınız, karşılaştıkları hataları ekran görüntüleriyle beraber sunucunuza kolayca iletebilirler. Bu sayede geliştirme süreci hızlanır ve kullanıcı deneyimi iyileşir.
+By integrating this library, your users can easily submit issues they encounter along with screenshots directly to your server. This helps streamline the development process and enhances the user experience.
