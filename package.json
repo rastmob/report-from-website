@@ -1,6 +1,6 @@
 {
   "name": "report-from-website",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A report button component for Angular applications that sends logs and screenshots.",
   "main": "dist/bundles/report-from-website.umd.js",
   "module": "dist/fesm2020/report-from-website.mjs",
