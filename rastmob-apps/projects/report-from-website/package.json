@@ -1,0 +1,35 @@
+{
+  "name": "report-from-website",
+  "version": "1.0.0",
+  "description": "A report button component for Angular applications that sends logs and screenshots.",
+  "main": "dist/report-from-website/bundles/report-from-website.umd.js",
+  "module": "dist/report-from-website/fesm2020/report-from-website.mjs",
+  "es2020": "dist/report-from-website/fesm2020/report-from-website.mjs",
+  "typings": "dist/report-from-website/report-from-website.d.ts",
+  "scripts": {
+    "build": "ng build report-from-website",
+    "test": "ng test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rastmob/report-from-website"
+  },
+  "keywords": [
+    "Angular",
+    "report",
+    "button",
+    "website",
+    "html2canvas"
+  ],
+  "author": "mobilerast",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "html2canvas": "^1.4.1"
+  },
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0"
+  }
+}
