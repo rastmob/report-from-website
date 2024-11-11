@@ -1,11 +1,11 @@
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { ReportFromWebsiteComponent } from './report-from-website.component';
+import { ReportButtonComponent } from './report-button.component';
 
 @NgModule({
-  declarations: [ReportFromWebsiteComponent],
+  declarations: [ReportButtonComponent],
   imports: [CommonModule, HttpClientModule],
-  exports: [ReportFromWebsiteComponent],
+  exports: [ReportButtonComponent]
 })
-export class ReportFromWebsiteModule {}
+export class ReportFromWebsiteModule { }

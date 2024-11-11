@@ -8,7 +8,7 @@ describe('ReportFromWebsiteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportFromWebsiteComponent]
+      declarations: [ ReportFromWebsiteComponent ]
     })
     .compileComponents();
 
