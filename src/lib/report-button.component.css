@@ -1,0 +1,50 @@
+/* Button Style */
+.report-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .report-button:hover {
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+  }
+  
+  .report-button span {
+    display: none;
+    margin-left: 8px;
+  }
+  
+  .report-button:hover span {
+    display: inline;
+  }
+  
+  /* Toast Style */
+  .toast {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+    z-index: 1000;
+  }
+  

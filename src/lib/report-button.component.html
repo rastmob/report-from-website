@@ -1,0 +1,9 @@
+<!-- Report Button -->
+<div class="report-button" (click)="sendReport()">
+  🛠️<span>Send a Report</span>
+</div>
+
+<!-- Toast Message -->
+<div *ngIf="toastVisible" class="toast">
+  Successfully sent the current state
+</div>
