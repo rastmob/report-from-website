@@ -12,6 +12,7 @@ The library is designed to be **easy to use** and can be integrated into any web
 - Capture the **user agent** (browser details).
 - Capture a **timestamp** of when the report is triggered.
 - **Send data** to a custom endpoint via a **POST request**.
+- **Capture a screenshot** of the current page using **html2canvas**.
 
 ## Installation
 
@@ -85,10 +86,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));  // Ekran görüntüsünün büyük olabileceğini dikkate alarak
 
 app.post('/error/log', (req, res) => {
-  console.log('Received report data:', req.body);
+  console.log('Received report data:', req.body);  // Gelen veriyi kontrol et
+
+  // Eğer screenshot varsa, base64 resmini işleyebilirsiniz (örneğin kaydedebilir ya da işleyebilirsiniz)
+  if (req.body.screenshot) {
+    console.log('Screenshot data received:', req.body.screenshot);
+  }
+
   res.status(200).json({ message: 'Report received successfully!' });
 });
 
