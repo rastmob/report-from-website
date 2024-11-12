@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report From Website Example</title>
+  <script src="../dist/report-from-website.js"></script> 
+</head>
+<body>
+
+  <button id="reportButton">Send a Report</button>
+
+  <script>
+    
+    const report = new ReportFromWebsite('#reportButton', 'https://yourwebsite.com/error/log');
+  </script>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
+// report-from-website.js - A pure JavaScript library
+
 class ReportFromWebsite {
     constructor(buttonSelector, logUrl = '/error/log') {
       this.button = document.querySelector(buttonSelector);
-      
       this.logUrl = logUrl;
   
       if (this.button) {
@@ -11,13 +12,13 @@ class ReportFromWebsite {
       }
     }
   
-   
+    
     handleClick() {
       console.log('Sending report data...');
       
       const state = this.captureState();
       
-     
+   
       this.sendReportData(state)
         .then(response => {
           console.log('Report sent successfully:', response);
@@ -27,7 +28,7 @@ class ReportFromWebsite {
         });
     }
   
-    
+
     captureState() {
       const state = {
         url: this.logUrl || window.location.href,  
@@ -36,6 +37,7 @@ class ReportFromWebsite {
       };
       return state;
     }
+  
   
     async sendReportData(data) {
       try {
@@ -59,9 +61,10 @@ class ReportFromWebsite {
     }
   }
   
+  
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ReportFromWebsite; 
+    module.exports = ReportFromWebsite;  
   } else {
-    window.ReportFromWebsite = ReportFromWebsite;  
+    window.ReportFromWebsite = ReportFromWebsite; 
   }
   
