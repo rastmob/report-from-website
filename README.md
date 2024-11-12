@@ -1,126 +1,110 @@
 
-# Report From Website
+# Report From Website - JavaScript Library
 
-[![npm version](https://badge.fury.io/js/report-from-website.svg)](https://badge.fury.io/js/report-from-website)
+## Overview
 
-**Report From Website** is an Angular library component that allows users to report issues they encounter, along with screenshots and logs, to a specified server endpoint. This library is particularly useful for gathering user feedback and debugging information in a visual format, helping development teams better understand and resolve issues.
+`report-from-website` is a **pure JavaScript** library that allows you to capture essential state information (like the URL, user agent, timestamp) and send it to a backend API. It's typically used for error reporting or logging user activity in the background.
 
-## Features
+The library is designed to be **easy to use** and can be integrated into any web project (including Angular, React, or plain HTML).
 
-- **Screenshot Capture**: Automatically captures the current screen view.
-- **Log Collection**: Gathers console logs, URL, and user information.
-- **Server Submission**: Sends all data to a specified URL in JSON format.
-- **Flexible Configuration**: Allows dynamic input of custom log URLs and HTTP headers.
+### Key Features:
+- Capture the current **URL** of the page.
+- Capture the **user agent** (browser details).
+- Capture a **timestamp** of when the report is triggered.
+- **Send data** to a custom endpoint via a **POST request**.
 
 ## Installation
 
+To include this library in your project, you can either download the raw JavaScript file or install it via npm (if published).
+
+### Option 1: Download the raw JavaScript file
+- Download `report-from-website.js` from the **dist/** folder and include it in your project.
+
+### Option 2: Install via npm
 ```bash
 npm install report-from-website
 ```
 
 ## Usage
 
-Integrate the library into your Angular application by following these steps.
+### 1. Include the Library in Your Project
 
-### Import the Module
-
-Import `ReportFromWebsiteModule` in `AppModule` or the specific module where you want to use this component.
-
-```typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { ReportFromWebsiteModule } from 'report-from-website';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    ReportFromWebsiteModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+#### **Option 1: In HTML**
+```html
+<script src="path/to/report-from-website.js"></script>
 ```
 
-### Use the Component
+#### **Option 2: In JavaScript Module (ESM or CommonJS)**
+```javascript
+import ReportFromWebsite from 'report-from-website';  // If installed via npm
 
-Add the `ReportButtonComponent` to your template to enable users to report their current screen state, including screenshots and log details.
+// Initialize the report functionality
+const report = new ReportFromWebsite('#reportButton', '/custom/log');  // URL is optional
+```
 
-#### `app.component.html`
+### 2. HTML Button to Trigger the Report
+
+Add a button to your HTML that will trigger the report:
 
 ```html
-<app-report-button
-  [logUrl]="'https://yourserver.com/api/report/log'"
-  [headers]="{
-    'Authorization': 'Bearer YOUR_TOKEN_HERE',
-    'Content-Type': 'application/json'
-  }"
-  (reportResult)="handleReportResult($event)">
-</app-report-button>
+<button id="reportButton">Send a Report</button>
 ```
 
-#### `app.component.ts`
+### 3. Handling the Report Data
 
-Define the `handleReportResult` function to process the result of the report submission:
+When the button is clicked, the library will send the data to the provided URL (default is `/error/log`). You can replace the default URL with any custom endpoint.
 
-```typescript
-import { Component } from '@angular/core';
+## Example Usage
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  handleReportResult(result: { status: string, response?: any, error?: any }) {
-    if (result.status === 'success') {
-      console.log('Report sent successfully:', result.response);
-      // Display success notification or message
-    } else if (result.status === 'error') {
-      console.error('Report sending failed:', result.error);
-      // Display error notification or message
-    }
-  }
-}
+**HTML Example**:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report From Website Example</title>
+  <script src="path/to/report-from-website.js"></script> <!-- Library script -->
+</head>
+<body>
+
+  <button id="reportButton">Send a Report</button>
+
+  <script>
+    // Initialize the library with the button selector and optional URL for reporting
+    const report = new ReportFromWebsite('#reportButton', 'https://yourwebsite.com/error/log');
+  </script>
+
+</body>
+</html>
 ```
 
-### Configurable Input Parameters
+### 4. Backend Example (Node.js/Express)
+```javascript
+const express = require('express');
+const app = express();
+const port = 3000;
 
-- **`logUrl`** (required): Specifies the URL endpoint for log collection. Example: `https://yourserver.com/api/report/log`
-- **`headers`** (optional): HTTP headers to include in the request, commonly for `Authorization` and `Content-Type`.
+app.use(express.json());
 
-### Event Response Data
+app.post('/error/log', (req, res) => {
+  console.log('Received report data:', req.body);
+  res.status(200).json({ message: 'Report received successfully!' });
+});
 
-- **`status`**: Returns `success` if the report was sent successfully, otherwise returns `error`.
-- **`response`**: Contains the server response data upon success.
-- **`error`**: Provides error details if the submission fails.
-
-## Use Case Example
-
-This library is especially helpful for enabling users to quickly report issues they encounter, with screenshots and logs, directly to the server. It improves user satisfaction and simplifies issue resolution by providing developers with contextual data.
-
-## Dependencies
-
-This library uses the `html2canvas` library to capture screenshots, which is included as a dependency in the `package.json`.
-
-## Contributing
-
-To contribute to this project, please visit the [GitHub repository](https://github.com/rastmob/report-from-website) and submit a pull request.
-
-## Contact & Support
-
-- **Developer**: [@mobilerast](http://rastmobile.com/en)
-- **Contact**: mehmet.alp@rastmobile.com
-- **Phone**: +905310211446
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+```
 
 ## License
 
-MIT
+MIT License. See `LICENSE` for more information.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository, make changes, and submit a pull request.
 
 ---
 
-By integrating this library, your users can easily submit issues they encounter along with screenshots directly to your server. This helps streamline the development process and enhances the user experience.
+Feel free to reach out if you have any questions or need support. Thank you for using `report-from-website`!
